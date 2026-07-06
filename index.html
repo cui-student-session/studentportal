@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>CUOnline Student Portal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="https://cuonline.cuiwah.edu.pk:8095/Content/img/fav.png">
+    
+    <!-- Bootstrap CSS CDN (Loaded securely over HTTPS) -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Complete Embedded Styles with Absolute Image/Icon Paths and Mobile Responsive Rules -->
+    <style>
+        /* Base Page Background (Original Portal Wallpaper) */
+        body {
+            background: url('https://cuonline.cuiwah.edu.pk:8095/Content/img/bg.jpg') repeat scroll center center #D1D2D9 !important;
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            padding: 0;
+            width: 100%;
+            max-width: 1170px !important;
+            margin: 0 auto !important;
+            background: url('https://cuonline.cuiwah.edu.pk:8095/Content/img/bg.jpg') repeat scroll center center transparent !important;
+        }
+
+        .row {
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Top Bar (Teal Green) */
+        .top_row {
+            float: left;
+            width: 100%;
+            background: #13A89E !important;
+            padding: 5px 0;
+            color: #fff;
+        }
+
+        .label_without_bg {
+            background: none;
+            font-weight: bold;
+            color: #fff;
+            font-size: 14px;
+        }
+
+        /* Main Navigation Bar (Dark Blue) */
+        .logo_menu_row {
+            float: left;
+            width: 100%;
+            background: #1e1f4a !important;
+            padding: 10px 0;
+        }
+
+        .inner_row {
+            margin: 0 auto;
+            width: 1170px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            float: left;
+            display: flex;
+            max-height: 135px;
+        }
+
+        .logo img {
+            width: 160px;
+            height: auto;
+        }
+
+        /* Rounded Menu Box Styling */
+        .rounded_menu_boxes {
+            padding: 11px 0;
+        }
+
+        .rounded_menu_boxes ul {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            list-style: none;
+        }
+
+        .rounded_menu_boxes ul li {
+            float: left;
+            display: inline;
+            text-align: center;
+            width: 80px;
+        }
+
+        .rounded_menu_boxes ul li a {
+            border-radius: 3px;
+            color: #000 !important;
+            float: left;
+            font-size: 10px;
+            height: 78px;
+            margin: 5px;
+            padding-top: 50px;
+            text-align: center;
+            width: 70px;
+            font-weight: bold;
+            text-decoration: none;
+            background-color: #fff;
+        }
+
+        /* Absolute Paths for Original Icons */
+        .rounded_menu_boxes ul li a.home {
+            background: url("https://cuonline.cuiwah.edu.pk:8095/Content/img/1.png") no-repeat scroll center 11px #fff;
+        }
+        .rounded_menu_boxes ul li a.regCard {
+            background: url("https://cuonline.cuiwah.edu.pk:8095/Content/img/RegistrationCard.png") no-repeat scroll center 11px #fff;
+            background-size: 35px;
+        }
+        .rounded_menu_boxes ul li a.fees {
+            background: url("https://cuonline.cuiwah.edu.pk:8095/Content/img/feesicon.jpg") no-repeat scroll center 11px #fff;
+            background-size: 35px;
+        }
+        .rounded_menu_boxes ul li a.marks {
+            background: url("https://cuonline.cuiwah.edu.pk:8095/Content/img/3.png") no-repeat scroll center 11px #fff;
+        }
+        .rounded_menu_boxes ul li a.attndnce {
+            background: url("https://cuonline.cuiwah.edu.pk:8095/Content/img/2.png") no-repeat scroll center 11px #fff;
+        }
+        .rounded_menu_boxes ul li a.reports {
+            background: url("https://cuonline.cuiwah.edu.pk:8095/Content/img/5.png") no-repeat scroll center 11px #fff;
+        }
+
+        .rounded_menu_boxes ul li a.selected {
+            background-color: #13A89E !important;
+            color: #fff !important;
+        }
+
+        .rounded_menu_boxes ul li a:hover {
+            background-color: #13A89E !important;
+            color: #fff !important;
+        }
+
+        /* Profile Picture Styling */
+        .StudentPicture img {
+            border-radius: 15px;
+            width: 125px;
+            height: 125px;
+            border: 2px solid #fff;
+            float: right;
+        }
+
+        /* Content Area & Result Card Container */
+        .main_body {
+            margin: 0 auto;
+            width: 1170px;
+            padding: 15px 0;
+        }
+
+        .main_body .content_area {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            float: left;
+            width: 100%;
+        }
+
+        .single_result_container {
+            min-height: 400px;
+            margin-bottom: 25px;
+            background: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        /* Result Card Tables Styling */
+        .tbl_one {
+            width: 68% !important;
+            margin: 0 auto 15px auto !important;
+            border-collapse: collapse !important;
+        }
+        .tbl_one tr {
+            float: left;
+            width: 100%;
+        }
+        .tbl_one td {
+            padding: 3px !important;
+            float: left;
+            width: 48%;
+            font-size: 14px !important;
+            border: none !important;
+        }
+
+        .tbl_two {
+            margin: 0 auto 15px auto !important;
+            width: 800px !important;
+            border-collapse: collapse;
+        }
+        .tbl_two td, .tbl_two th {
+            padding: 8px !important;
+            text-align: center !important;
+            border: 1px solid #ddd !important;
+            font-size: 13px !important;
+        }
+        .WhiteFormTextResult th {
+            font-weight: bold !important;
+            background-color: #f5f5f5 !important;
+        }
+
+        /* Footer */
+        .footer_menu {
+            background: #1e1f4a;
+            padding: 15px 0;
+            float: left;
+            width: 100%;
+            text-align: center;
+            color: #fff;
+            margin-top: 20px;
+        }
+        .footer_menu a {
+            color: #13A89E;
+            font-weight: bold;
+        }
+
+        /* Mobile View Compatibility - Prevents lines from going outside */
+        @media only screen and (max-width: 767px) {
+            .container, .main_body { 
+                width: 100% !important; 
+                max-width: 100% !important;
+            }
+            .inner_row { 
+                width: 100% !important; 
+                flex-direction: column; 
+                text-align: center; 
+            }
+            .rounded_menu_boxes ul { 
+                justify-content: center !important; 
+                flex-wrap: wrap !important;
+            }
+            .rounded_menu_boxes ul li {
+                width: 60px !important;
+                margin: 5px !important;
+            }
+            .rounded_menu_boxes ul li a {
+                width: 50px !important;
+                height: 60px !important;
+                padding-top: 38px !important;
+                font-size: 8px !important;
+                background-size: 25px !important;
+            }
+            .StudentPicture img { 
+                float: none !important; 
+                margin: 10px auto !important; 
+                width: 90px !important;
+                height: 90px !important;
+            }
+            .tbl_one {
+                width: 100% !important;
+            }
+            .tbl_one tr {
+                float: none !important;
+                width: 100% !important;
+            }
+            .tbl_one td {
+                float: none !important;
+                width: 100% !important;
+                display: block !important;
+                text-align: left !important;
+                padding: 4px 10px !important;
+            }
+            .tbl_two {
+                width: 100% !important;
+                display: block !important;
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch;
+            }
+            .tbl_two table {
+                width: 100% !important;
+            }
+            .tbl_two td, .tbl_two th {
+                font-size: 11px !important;
+                padding: 5px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="row clearfix top_row">
+                <div class="inner_row">
+                    <div class="col-md-12 column">
+                        <span title="OBAID AHMED S/D/O SAEED AKHTAR" class="label label-default label_without_bg"><b>Welcome : CIIT/SP24-BCS-044/WAH</b></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix logo_menu_row">
+                <div class="inner_row">
+                    <div class="logo">
+                        <img alt="Logo" src="https://cuonline.cuiwah.edu.pk:8095/Content/img/logo_with_text.png">
+                    </div>
+                    <div class="rounded_menu_boxes">
+                        <ul>
+                            <li><a title="Home" class="home" href="#">Dashboard</a></li>
+                            <li><a title="Course Registration Card" class="regCard" href="#">Registration Card</a></li>
+                            <li><a title="Student Fees" class="fees" href="#">Fees</a></li>
+                            <li><a title="Result Card" class="marks selected" href="#">Result Card</a></li>
+                            <li><a title="My Profile" class="attndnce" href="#">Profile</a></li>
+                            <li><a title="Logout" class="reports" href="#">Logout</a></li>
+                        </ul>
+                    </div>
+                    <!-- Photo loads directly from avatar.jpeg in your root -->
+                    <div class="StudentPicture">
+                        <img src="avatar.jpeg" alt="Profile Picture">
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Body / Results -->
+        <div class="main_body">
+            <div class="content_area">
+                
+                <div style="background:#13A89E; margin-bottom: 20px; text-align: center; padding: 10px; font-weight: bold; color: white; font-size: 18px; border-radius: 4px;">
+                    Student Result Card
+                </div>
+
+                <!-- ==================== SEMESTER 1 (Spring 2024) ==================== -->
+                <div class="single_result_container">
+                    <div class="table_container">
+                        <table class="tbl_one">
+                            <tbody>
+                                <tr>
+                                    <td><b>Reg. No:</b> CIIT/SP24-BCS-044/WAH</td>
+                                    <td><b>Name:</b> OBAID AHMED</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Semester:</b> Spring 2024</td>
+                                    <td><b>Father Name:</b> SAEED AKHTAR</td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 100%;"><b>Program:</b> BCS (Bachelor of Science in Computer Science)</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table_container">
+                        <table class="tbl_two">
+                            <tbody>
+                                <tr bordercolor="#f5f5f5">
+                                    <td colspan="4" bordercolor="#FFFFFF" class="WhiteFormheading2" bgcolor="#FFFFFF" align="center">
+                                        <table id="AutoNumber1" style="border-collapse: collapse" width="100%" cellspacing="0" cellpadding="5" bordercolor="#000000" border="1" bgcolor="#FFFFFF" align="center">
+                                            <tbody>
+                                                <tr class="WhiteFormTextResult" bordercolor="#000000" bgcolor="#f5f5f5">
+                                                    <td width="20%" align="center"><strong>Course No</strong></td>
+                                                    <td width="54%" align="center"><strong>Course Title</strong></td>
+                                                    <td width="10%" align="center"><strong>Credit</strong></td>
+                                                    <td align="center"><strong>Marks</strong></td>
+                                                    <td width="10%" align="center"><strong>L.G.</strong></td>
+                                                    <td width="10%" align="center"><strong>G.P.</strong></td>
+                                                </tr>
+                                                <tr bordercolor="#000000" class="WhiteFormTextResult" bgcolor="#f5f5f5">
+                                                    <td align="center">CSC101</td>
+                                                    <td bgcolor="#f5f5f5" align="center"><div align="left">Applications of Information and Communication Technologies</div></td>
+                                                    <td width="20%" align="center"><strong>3</strong></td>
+                                                    <td align="center">72</td>
+                                                    <td width="10%" align="center">B</td>
+                                                    <td width="10%" align="center">3</td>
+                                                </tr>
+                                                <tr bordercolor="#000000" class="WhiteFormTextResult" bgcolor="#f5f5f5">
+                                                    <td align="center">CSC102</td>
+                                                    <td bgcolor="#f5f5f5" align="center"><div align="left">Discrete Structures</div></td>
+                                                    <td width="20%" align="center"><strong>3</strong></td>
+                                                    <td align="center">86</td>
+                                                    <td width="10%" align="center">A</td>
+                                                    <td width="10%" align="center">4</td>
+                                                </tr>
+                                                <tr bordercolor="#000000" class="WhiteFormTextResult" bgcolor="#f5f5f5">
+                                                    <td align="center">HUM104</td>
+                                                    <td bgcolor="#f5f5f5" align="center"><div align="left">Functional English</div></td>
+                                                    <td width="20%" align="center"><strong>3</strong></td>
+                                                    <td align="center">80</td>
+                                                    <td width="10%" align="center">A-</td>
+                                                    <td width="10%" align="center">3.66</td>
+                                                </tr>
+                                                <tr bordercolor="#000000" class="WhiteFormTextResult" bgcolor="#f5f5f5">
+                                                    <td align="center">HUM112</td>
+                                                    <td bgcolor="#f5f5f5" align="center"><div align="left">Islamic Studies</div></td>
+                                                    <td width="20%" align="center"><strong>2</strong></td>
+                                                    <td align="center">81</td>
+                                                    <td width="10%" align="center">A-</td>
+                                                    <td width="10%" align="center">3.66</td>
+                                                </tr>
+                                                <tr bordercolor="#000000" class="WhiteFormTextResult" bgcolor="#f5f5f5">
+                                                    <td align="center">HUM113</td>
+                                                    <td bgcolor="#f5f5f5" align="center"><div align="left">Ideology and Constitution of Pakistan</div></td>
+                                                    <td width="20%" align="center"><strong>2</strong></td>
+                                                    <td align="center">72</td>
+                                                    <td width="10%" align="center">B</td>
+                                                    <td width="10%" align="center">3</td>
+                                                </tr>
+                                                <tr bordercolor="#000000" class="WhiteFormTextResult" bgcolor="#f5f5f5">
+                                                    <td align="center">HUM130</td>
+                                                    <td bgcolor="#f5f5f5" align="center"><div align="left">Fundamentals of Sociology</div></td>
+                                                    <td width="20%" align="center"><strong>2</strong></td>
+                                                    <td align="center">82</td>
+                                                    <td width="10%" align="center">A-</td>
+                                                    <td width="10%" align="center">3.66</td>
+                                                </tr>
+                                                <tr bordercolor="#000000" class="WhiteFormTextResult" bgcolor="#f5f5f5">
+                                                    <td align="center">MTH091</td>
+                                                    <td bgcolor="#f5f5f5" align="center"><div align="left">Pre-Calculus I</div></td>
+                                                    <td width="20%" align="center"><strong>3</strong></td>
+                                                    <td align="center">Non Credit Course</td>
+                                                    <td width="10%" align="center">C-</td>
+                                                    <td width="10%" align="center">Non Credit Course</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table_container">
+                        <table class="tbl_one">
+                            <tbody>
+                                <tr>
+                                    <td><b>CGPA :</b> 3.51</td>
+                                    <td><b>Scholastic Status:</b> GAS</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- ==================== SEMESTER 2 (Fall 2024) ==================== -->
+                <div class="single_result_container">
+                    <div class="table_container">
+                        <table class="tbl_one">
+                            <tbody>
+                                <tr>
+                                    <td><b>Reg. No:</b> CIIT/SP24-BCS-044/WAH</td>
+                                    <td><b>Name:</b> OBAID AHMED</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Semester:</b> Fall 2024</td>
+                                    <td><b>Father Name:</b> SAEED AKHTAR</td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 100%;"><b>Program:</b> BCS (Bachelor of Science in Computer Science)</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="table_container">
+                        <table class="tbl_two">
+                            <tbody>
+                                <tr bordercolor="#f5f5f5">
+                                    <td colspan="4" bordercolor="#FFFFFF" class="WhiteFormheading2" bgcolor="#FFFFFF" align="center">
+                                        <table id="AutoNumber2" style="border-collapse: collapse" width="100%" cellspacing="0" cellpadding="5" bordercolor="#000000" border="1" bgcolor="#FFFFFF" align="center">
+                                            <tbody>
+                                                <tr class="WhiteFormTextResult" bordercolor="#000000" bgcolor="#f5f5f5">
+                                                    <td width="20%" align="center"><strong>Course No</strong></td>
+                                                    <td width="54%" align="center"><strong>Course Title</strong></td>
+                                                    <td width="10%" align="center"><strong>Credit</strong></td>
+                                                    <td align="center"><strong>Marks</strong></td>
+                                                    <td width="10%" align="center"><strong>L.G.</strong></td>
+                                                    <td width="10%" align="center"><strong>G.P.</strong></td>
+                                                </tr>
+                                                <tr bordercolor="#000000" class="WhiteFormTextResult" bgcolor="#f5f5f5">
+                                                    <td align="center">CSC103</td>
+                                                    <td bgcolor="#f5f5f5" align="center"><div align="left">Programming Fundamentals</div></td>
+                                                    <td width="20%" align="center"><strong>4</strong></td>
+                                                    <td align="center">71</td>
+                                                    <td width="10%" align="center">B</td>
+                                                    <td width="10%" align="center">3</td>
+                                                </tr>
+                                                <tr bordercolor="#000000" class="WhiteFormTextResult" bgcolor="#f5f5f5">
+                                                    <td align="center">EEE240</td>
+                                                    <td bgcolor="#f5f5f5" align="center"><div align="left">Fundamentals of Digital Logic Design</div></td>
+                                                    <td width="20%" align="center"><strong>3</strong></td>
+                                                    <td align="center">68</td>
+                                                    <td width="10%" align="center">B-</td>
+                                                    <td width="10%" align="center">2.66</td>
+                                                </tr>
+                                                <tr bordercolor="#000000" class="WhiteFormTextResult" bgcolor="#f5f5f5">
+                                                    <td align="center">HUM120</td>
+                                                    <td bgcolor="#f5f5f5" align="center"><div align="left">Expository Writing</div></td>
+                                                    <td width="20%" align="center"><strong>3</strong></td>
+                                                    <td align="center">78</td>
+                                                    <td width="10%" align="center">B+</td>
+                                                    <td width="10%" align="center">3.33</td>
+                                                </tr>
+                                                <tr bordercolor="#000000" class="WhiteFormTextResult" bgcolor="#f5f5f5">
+                                                    <td align="center">MGT250</td>
+                                                    <td bgcolor="#f5f5f5" align="center"><div align="left">Introduction to Entrepreneurship</div></td>
+                                                    <td width="20%" align="center"><strong>2</strong></td>
+                                                    <td align="center">73</td>
+                                                    <td width="10%" align="center">B</td>
+                                                    <td width="10%" align="center">3</td>
+                                                </tr>
+                                                <tr bordercolor="#000000" class="WhiteFormTextResult" bgcolor="#f5f5f5">
+                                                    <td align="center">MTH092</td>
+                                                    <td bgcolor="#f5f5f5" align="center"><div align="left">Pre-Calculus II</div></td>
+                                                    <td width="20%" align="center"><strong>3</strong></td>
+                                                    <td align="center">Non Credit Course</td>
+                                                    <td width="10%" align="center">D+</td>
+                                                    <td width="10%" align="center">Non Credit Course</td>
+                                                </tr>
+                                                <tr bordercolor="#000000" class="WhiteFormTextResult" bgcolor="#f5f5f5">
+                                                    <td align="center">PHY124</td>
+                                                    <td bgcolor="#f5f5f5" align="center"><div align="left">Applied Physics</div></td>
+                                                    <td width="20%" align="center"><strong>3</strong></td>
+                                                    <td align="center">75</td>
+                                                    <td width="10%" align="center">B+</td>
+                                                    <td width="10%" align="center">3.33</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table_container">
+                        <table class="tbl_one">
+                            <tbody>
+                                <tr>
+                                    <td><b>CGPA :</b> 3.29</td>
+                                    <td><b>Scholastic Status:</b> GAS</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- ==================== SEMESTER 3 (Spring 2025) ==================== -->
+                <div class="single_result_container">
+                    <div class="table_container">
+                        <table class="tbl_one">
+                            <tbody>
+                                <tr>
+                                    <td><b>Reg. No:</b> CIIT/SP24-BCS-044/WAH</td>
+                                    <td><b>Name:</b> OBAID AHMED</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Semester:</b> Spring 2025</td>
+                                    <td><b>Father Name:</b> SAEED AKHTAR</td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 100%;"><b>Program:</b> BCS (Bachelor of Science in Computer Science)</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="table_container">
+                        <table class="tbl_two">
+                            <tbody>
+                                <tr bordercolor="#f5f5f5">
+                                    <td colspan="4" bordercolor="#FFFFFF" class="WhiteFormheading2" bgcolor="#FFFFFF" align="center">
+                                        <table id="AutoNumber3" style="border-collapse: collapse" width="100%" cellspacing="0" cellpadding="5" bordercolor="#000000" border="1" bgcolor="#FFFFFF" align="center">
+                                            <tbody>
+                                                <tr class="WhiteFormTextResult" bordercolor="#000000" bgcolor="#f5f5f5">
+                                                    <td width="20%" align="center"><strong>Course No</strong></td>
+                                                    <td width="54%" align="center"><strong>Course Title</strong></td>
+                                                    <td width="10%" align="center"><strong>Credit</strong></td>
+                                                    <td align="center"><strong>Marks</strong></td>
+                                                    <td width="10%" align="center"><strong>L.G.</strong></td>
+                                                    <td width="10%" align="center"><strong>G.P.</strong></td>
+                                                </tr>
+                                                <tr bordercolor="#000000" class="WhiteFormTextResult" bgcolor="#f5f5f5">
+                                                    <td align="center">CSC241</td>
+                                                    <td bgcolor="#f5f5f5" align="center"><div align="left">Object Oriented Programming</div></td>
+                                                    <td width="20%" align="center"><strong>4</strong></td>
+                                                    <td align="center">86</td>
+                                                    <td width="10%" align="center">A</td>
+                                                    <td width="10%" align="center">4</td>
+                                                </tr>
+                                                <tr bordercolor="#000000" class="WhiteFormTextResult" bgcolor="#f5f5f5">
+                                                    <td align="center">CSC270</td>
+                                                    <td bgcolor="#f5f5f5" align="center"><div align="left">Database Systems</div></td>
+                                                    <td width="20%" align="center"><strong>4</strong></td>
+                                                    <td align="center">82</td>
+                                                    <td width="10%" align="center">A-</td>
+                                                    <td width="10%" align="center">3.66</td>
+                                                </tr>
+                                                <tr bordercolor="#000000" class="WhiteFormTextResult" bgcolor="#f5f5f5">
+                                                    <td align="center">CSC275</td>
+                                                    <td bgcolor="#f5f5f5" align="center"><div align="left">Computer Networks</div></td>
+                                                    <td width="20%" align="center"><strong>3</strong></td>
+                                                    <td align="center">70</td>
+                                                    <td width="10%" align="center">B</td>
+                                                    <td width="10%" align="center">3</td>
+                                                </tr>
+                                                <tr bordercolor="#000000" class="WhiteFormTextResult" bgcolor="#f5f5f5">
+                                                    <td align="center">CSC291</td>
+                                                    <td bgcolor="#f5f5f5" align="center"><div align="left">Software Engineering</div></td>
+                                                    <td width="20%" align="center"><strong>3</strong></td>
+                                                    <td align="center">80</td>
+                                                    <td width="10%" align="center">A-</td>
+                                                    <td width="10%" align="center">3.66</td>
+                                                </tr>
+                                                <tr bordercolor="#000000" class="WhiteFormTextResult" bgcolor="#f5f5f5">
+                                                    <td align="center">MTH104</td>
+                                                    <td bgcolor="#f5f5f5" align="center"><div align="left">Calculus and Analytic Geometry</div></td>
+                                                    <td width="20%" align="center"><strong>3</strong></td>
+                                                    <td align="center">74</td>
+                                                    <td width="10%" align="center">B</td>
+                                                    <td width="10%" align="center">3</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table_container">
+                        <table class="tbl_one">
+                            <tbody>
+                                <tr>
+                                    <td><b>CGPA :</b> 3.51</td>
+                                    <td><b>Scholastic Status:</b> GAS</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- ==================== SEMESTER 4 (Spring 2026) ==================== -->
+                <div class="single_result_container">
+                    <div class="table_container">
+                        <table class="tbl_one">
+                            <tbody><tr>
+                                <td><b>Reg. No:</b> CIIT/SP24-BCS-044/WAH</td>
+                                <td><b>Name:</b>  OBAID AHMED</td>
+                            </tr>
+                            <tr>
+                                <td><b>Semester:</b> Spring 2026</td>
+                                <td><b>Father Name:</b> SAEED AKHTAR</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 100%;"><b>Program:</b>BCS (Bachelor of Science in Computer Science)</td>
+                                <td></td>
+                            </tr>
+                        </tbody></table>
+                    </div>
+
+                    <div class="table_container">
+                        <table class="tbl_two">
+                            <tbody>
+                                <tr bordercolor="#f5f5f5">
+                                    <td colspan="4" bordercolor="#FFFFFF" class="WhiteFormheading2" bgcolor="#FFFFFF" align="center">
+                                        <table id="AutoNumber4" style="border-collapse: collapse" width="100%" cellspacing="0" cellpadding="5" bordercolor="#000000" border="1" bgcolor="#FFFFFF" align="center">
+                                            <tbody>
+                                                <tr class="WhiteFormTextResult" bordercolor="#000000" bgcolor="#f5f5f5">
+                                                    <td width="20%" align="center"><strong>Course No</strong></td>
+                                                    <td width="54%" align="center"><strong>Course Title</strong></td>
+                                                    <td width="10%" align="center"><strong>Credit</strong></td>
+                                                    <td align="center"><strong>Marks</strong></td>
+                                                    <td width="10%" align="center"><strong>L.G.</strong></td>
+                                                    <td width="10%" align="center"><strong>G.P.</strong></td>
+                                                </tr>
+                                                <tr bordercolor="#000000" class="WhiteFormTextResult" bgcolor="#f5f5f5">
+                                                    <td align="center">CSC221</td>
+                                                    <td bgcolor="#f5f5f5" align="center"><div align="left">Computer Organization and Assembly Language</div></td>
+                                                    <td width="20%" align="center"><strong>4</strong></td>
+                                                    <td align="center">85</td>
+                                                    <td width="10%" align="center">A</td>
+                                                    <td width="10%" align="center">4</td>
+                                                </tr>
+                                                <tr bordercolor="#000000" class="WhiteFormTextResult" bgcolor="#f5f5f5">
+                                                    <td align="center">CSC311</td>
+                                                    <td bgcolor="#f5f5f5" align="center"><div align="left">Design and Analysis of Algorithms</div></td>
+                                                    <td width="20%" align="center"><strong>3</strong></td>
+                                                    <td align="center">76</td>
+                                                    <td width="10%" align="center">B+</td>
+                                                    <td width="10%" align="center">3.33</td>
+                                                </tr>
+                                                <tr bordercolor="#000000" class="WhiteFormTextResult" bgcolor="#f5f5f5">
+                                                    <td align="center">CSC339</td>
+                                                    <td bgcolor="#f5f5f5" align="center"><div align="left">Mobile Application Development</div></td>
+                                                    <td width="20%" align="center"><strong>3</strong></td>
+                                                    <td align="center">85</td>
+                                                    <td width="10%" align="center">A-</td>
+                                                    <td width="10%" align="center">3.66</td>
+                                                </tr>
+                                                <tr bordercolor="#000000" class="WhiteFormTextResult" bgcolor="#f5f5f5">
+                                                    <td align="center">MTH201</td>
+                                                    <td bgcolor="#f5f5f5" align="center"><div align="left">Multivariable Calculus</div></td>
+                                                    <td width="20%" align="center"><strong>3</strong></td>
+                                                    <td align="center">75</td>
+                                                    <td width="10%" align="center">B+</td>
+                                                    <td width="10%" align="center">3.33</td>
+                                                </tr>
+                                                <tr bordercolor="#000000" class="WhiteFormTextResult" bgcolor="#f5f5f5">
+                                                    <td align="center">MTH262</td>
+                                                    <td bgcolor="#f5f5f5" align="center"><div align="left">Statistics and Probability</div></td>
+                                                    <td width="20%" align="center"><strong>3</strong></td>
+                                                    <td align="center">85</td>
+                                                    <td width="10%" align="center">A</td>
+                                                    <td width="10%" align="center">4</td>
+                                                </tr>
+                                                <tr bordercolor="#000000" class="WhiteFormTextResult" bgcolor="#f5f5f5">
+                                                    <td align="center">CSC325</td>
+                                                    <td bgcolor="#f5f5f5" align="center"><div align="left">Web Technologies</div></td>
+                                                    <td width="20%" align="center"><strong>3</strong></td>
+                                                    <td align="center">82</td>
+                                                    <td width="10%" align="center">A-</td>
+                                                    <td width="10%" align="center">3.66</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table_container">
+                        <table class="tbl_one">
+                            <tbody>
+                                <tr>
+                                    <td><b>CGPA :</b> 3.62</td>
+                                    <td><b>Scholastic Status:</b> GAS</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <div class="col-md-12 column footer_menu">
+                <div class="inner_row">
+                    <p>
+                        <a style="font-weight: bold; font-size: 15px;" href="http://itscomsats.com/" target="_blank">CUOnline</a>, Principal Seat © 2018-COMSATS ®
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
